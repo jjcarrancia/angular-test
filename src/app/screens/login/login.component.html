@@ -1,0 +1,21 @@
+<main>
+  <form>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x align-middle">
+        <div class="medium-6 small-12 cell">
+          <label>Email
+            <input type="text" [(ngModel)]="email" placeholder="Write your username" name="email">
+          </label>
+        </div>
+        <div class="medium-6 small-12 cell">
+          <label>Password
+            <input type="password" [(ngModel)]="password" placeholder="Write your password" name="password">
+          </label>
+        </div>
+        <div class="medium-6 small-12 cell">
+          <button (click)="loginUser()" class="button">Login</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</main>

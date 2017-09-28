@@ -1,0 +1,48 @@
+<main>
+  <div class="topbar row">
+    <input class="search-bar" type="text" placeholder="Search" [(ngModel)]="searchText">
+    <button class="button search-button" (click)="search()">Search</button>
+
+    <button (click)="showBranches = !showBranches" class="button dropdown dropdown-button">Branches</button>
+    <ul class="f-dropdown" *ngIf="showBranches && branches">
+      <li *ngFor="let branch of branches" class="dropdown-item" (click)="filterByBranch(branch.id)">{{branch.title}}</li>
+    </ul>
+
+    <button (click)="showOrderOptions = !showOrderOptions" class="button dropdown dropdown-button">Order by</button>
+    <ul class="f-dropdown" *ngIf="showOrderOptions">
+      <li class="dropdown-item" (click)="orderBy('rating')">Rating</li>
+      <li class="dropdown-item" (click)="orderBy('hourly_wage')">Hourly wage</li>
+      <li class="dropdown-item" (click)="orderBy('starts_at')">Date</li>
+    </ul>
+
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Role</th>
+        <th>Hourly wage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobs" (click)="goToJob(job.id)">
+        <td>{{job.title}}</td>
+        <td>{{job.role.title}}</td>
+        <td>{{job.hourly_wage}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-centered">
+    <ul class="pagination">
+      <li>
+        <button class="arrow" [disabled]="currentPage === 1"><a (click)="goPage('-')">&laquo;</a></button>
+      </li>
+      <li class="current">{{currentPage}}</li>
+      <li>
+        <button class="arrow" [disabled]="currentPage === lastPage"><a (click)="goPage('+')">&raquo;</a></button>
+      </li>
+    </ul>
+  </div>
+
+</main>
